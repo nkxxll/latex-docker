@@ -4,9 +4,11 @@ FROM ubuntu:22.04
 
 # change the shell
 SHELL ["/bin/bash", "-c"]
-# Update package lists and install texlive-full, latexmk, and other necessary packages
-RUN apt update && apt install -y \
-    texlive-full \
+# Update package lists and install texlive-latex-extra, latexmk, and other necessary packages
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    make \
+    texlive-latex-extra \
+    texlive-lang-german \
     latexmk \
     biber \
     && rm -rf /var/lib/apt/lists/*
